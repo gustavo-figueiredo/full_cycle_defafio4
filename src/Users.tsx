@@ -25,16 +25,35 @@ function Users() {
 
   useEffect(() => {
     const loadUsers = async () => {
-      const res = await axios.get<ServerResponse>('https://reqres.in/api/users');
-      console.log(res.data.data.data);
-      //setUsers(res);
+      const res: ServerResponse = await axios.get('https://reqres.in/api/users');
+      const responseData = res.data as ServerResponseData;
+      setUsers(responseData.data);
     }
     loadUsers();
   }, []);
 
   return (
-    <div>users</div>
-  );
+    <div>
+      <table>
+
+        {users.map(user => (
+          <tr key={user.id}>
+            <td><img src={user.avatar} /></td>
+            <td>
+              <tr>
+                <td>{user.first_name} {user.last_name}</td>
+              </tr>
+              <tr>
+                <td>{user.email}</td>
+              </tr>
+            </td>
+          </tr>
+        ))}
+
+      </table>
+
+    </div>
+  )
 }
 
 export default Users;

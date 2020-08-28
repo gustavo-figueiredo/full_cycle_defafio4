@@ -38,7 +38,7 @@ function Users() {
 
         {users.map(user => (
           <tr key={user.id}>
-            <td><img src={user.avatar} /></td>
+            <td><img alt="avatar" src={user.avatar} /></td>
             <td>
               <tr>
                 <td>{user.first_name} {user.last_name}</td>
